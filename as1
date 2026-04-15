@@ -1,0 +1,70 @@
+Procedure:
+Step 1: Create Project Folder
+
+Create a folder named:
+
+LibraryManagementSystem
+
+Open it in VS Code
+
+Step 2: Open Terminal
+
+Go to:
+
+Terminal → New Terminal
+Step 3: Initialize Git Repository
+git init
+Step 4: Create a Python File
+
+Create a file named:
+
+main.py
+
+Add code:
+
+print("Hello Library Management System")
+Step 5: Add Files to Git
+git add .
+Step 6: Commit Files
+git commit -m "Initial commit"
+Step 7: Create Repository in GitHub
+Go to GitHub
+Click New Repository
+Enter name:
+library-management-system
+Click Create Repository
+Step 8: Connect Local Repo to GitHub
+git remote add origin https://github.com/your-username/library-management-system.git
+Step 9: Push Code to GitHub
+git branch -M main
+git push -u origin main
+📌 Additional Git Commands (For Lab Questions)
+Check status
+git status
+View changes
+git diff
+View commit history
+git log
+🌿 Branch Commands (Feature Development)
+Create branch
+git branch login-feature
+Switch branch
+git checkout login-feature
+Merge branch
+git checkout main
+git merge login-feature
+🔄 Undo Changes
+Discard changes
+git checkout -- filename
+🚫 Ignore Files
+
+Create file:
+
+.gitignore
+
+Add:
+
+*.log
+*.tmp
+🔄 Pull Latest Changes
+git pull origin main

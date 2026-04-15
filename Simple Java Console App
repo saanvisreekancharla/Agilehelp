@@ -1,0 +1,586 @@
+Different Logic operations
+DemoApp/
+ ├── pom.xml
+ ├── src/
+ │   ├── main/java/com/example/
+ │   │   └── Logic.java
+ │   └── test/java/com/example/
+ │       └── LogicTest.java
+ └── target/
+✅ 2. Write Code in Visual Studio Code
+✔ Logical Operations Program
+package com.example;
+
+public class Logic {
+
+    public static boolean andOp(boolean a, boolean b) {
+        return a && b;
+    }
+
+    public static boolean orOp(boolean a, boolean b) {
+        return a || b;
+    }
+
+    public static boolean notOp(boolean a) {
+        return !a;
+    }
+
+    public static void main(String[] args) {
+        System.out.println("AND: " + andOp(true, false));
+        System.out.println("OR: " + orOp(true, false));
+        System.out.println("NOT: " + notOp(true));
+    }
+}
+✅ 3. JUnit Test Code
+package com.example;
+
+import org.junit.Test;
+import static org.junit.Assert.*;
+
+public class LogicTest {
+
+    @Test
+    public void testAnd() {
+        assertFalse(Logic.andOp(true, false));
+    }
+
+    @Test
+    public void testOr() {
+        assertTrue(Logic.orOp(true, false));
+    }
+
+    @Test
+    public void testNot() {
+        assertFalse(Logic.notOp(true));
+    }
+}
+✅ 4. Push Code to GitHub
+Steps:
+git init
+git add .
+git commit -m "Initial commit - Logic operations"
+git remote add origin https://github.com/your-username/DemoApp.git
+git push -u origin main
+✅ 5. Modify Code & Commit Again
+
+Example change:
+
+// change output message
+System.out.println("Logical AND Result: " + andOp(true, true));
+
+Then push:
+
+git add .
+git commit -m "Updated logic output"
+git push
+✅ 6. Configure CI Pipeline in Jenkins
+✔ Create Pipeline Job
+
+Add Jenkinsfile:
+
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Clone') {
+            steps {
+                git 'https://github.com/your-username/DemoApp.git'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh 'mvn clean compile'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                sh 'mvn test'
+            }
+        }
+
+        stage('Package') {
+            steps {
+                sh 'mvn package'
+            }
+        }
+    }
+}
+✅ 7. Containerize Using Docker
+✔ Dockerfile
+FROM openjdk:11
+WORKDIR /app
+COPY target/DemoApp-1.0-SNAPSHOT.jar app.jar
+CMD ["java", "-jar", "app.jar"]
+✔ Build & Run
+docker build -t demoapp .
+docker run demoapp
+
+Even and Odd Program (Main Code)
+
+📁 Save as: EvenOdd.java
+📍 Location: src/main/java/com/example/
+
+package com.example;
+
+public class EvenOdd {
+
+    public static String check(int n) {
+        if (n % 2 == 0) {
+            return "Even";
+        } else {
+            return "Odd";
+        }
+    }
+
+    public static void main(String[] args) {
+        int num = 10;
+
+        if (check(num).equals("Even")) {
+            System.out.println(num + " is Even");
+        } else {
+            System.out.println(num + " is Odd");
+        }
+    }
+}
+✅ 2. JUnit Test Code
+
+📁 Save as: EvenOddTest.java
+📍 Location: src/test/java/com/example/
+
+package com.example;
+
+import org.junit.Test;
+import static org.junit.Assert.*;
+
+public class EvenOddTest {
+
+    @Test
+    public void testEven() {
+        assertEquals("Even", EvenOdd.check(4));
+    }
+
+    @Test
+    public void testOdd() {
+        assertEquals("Odd", EvenOdd.check(5));
+    }
+}
+✅ 3. Folder Structure (VERY IMPORTANT)
+DemoApp/
+ ├── src/
+ │   ├── main/java/com/example/EvenOdd.java
+ │   └── test/java/com/example/EvenOddTest.java
+✅ 4. Add JUnit Dependency (pom.xml)
+<dependency>
+    <groupId>junit</groupId>
+    <artifactId>junit</artifactId>
+    <version>4.13.2</version>
+    <scope>test</scope>
+</dependency>
+✅ 5. Run Test
+mvn test
+
+Socket Program (Server)
+
+📁 Save as: Server.java
+📍 Location: src/main/java/com/example/
+
+package com.example;
+
+import java.io.*;
+import java.net.*;
+
+public class Server {
+
+    public static void main(String[] args) {
+        try {
+            ServerSocket server = new ServerSocket(5000);
+            System.out.println("Server started... Waiting for client");
+
+            Socket socket = server.accept();
+
+            BufferedReader input = new BufferedReader(
+                    new InputStreamReader(socket.getInputStream()));
+
+            String message = input.readLine();
+            System.out.println("Client says: " + message);
+
+            socket.close();
+            server.close();
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+}
+✅ 2. Socket Program (Client)
+
+📁 Save as: Client.java
+📍 Location: src/main/java/com/example/
+
+package com.example;
+
+import java.io.*;
+import java.net.*;
+
+public class Client {
+
+    public static void main(String[] args) {
+        try {
+            Socket socket = new Socket("localhost", 5000);
+
+            PrintWriter output = new PrintWriter(socket.getOutputStream(), true);
+
+            output.println("Hello Server!");
+
+            socket.close();
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+}
+✅ 3. Folder Structure
+DemoApp/
+ ├── src/main/java/com/example/
+ │   ├── Server.java
+ │   └── Client.java
+✅ 4. How to Run (VERY IMPORTANT)
+
+👉 Open terminal:
+
+Step 1: Compile
+mvn compile
+Step 2: Run Server FIRST
+java com.example.Server
+
+✔ Output:
+
+Server started... Waiting for client
+Step 3: Run Client
+java com.example.Client
+✔ Final Output (Server side)
+Client says: Hello Server!
+
+
+Save as: ServerPort.java
+📍 Location: src/main/java/com/example/
+
+package com.example;
+
+import java.io.*;
+import java.net.*;
+
+public class ServerPort {
+
+    public static void main(String[] args) {
+        try {
+            ServerSocket server = new ServerSocket(6000);
+            System.out.println("Server started...");
+
+            Socket socket = server.accept();
+
+            // Receive from client
+            BufferedReader in = new BufferedReader(
+                    new InputStreamReader(socket.getInputStream()));
+
+            // Send to client
+            PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+
+            String clientMsg = in.readLine();
+            System.out.println("Client: " + clientMsg);
+
+            out.println("Hello Client, Message received!");
+
+            socket.close();
+            server.close();
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+}
+✅ 2. Client Program
+
+📁 Save as: ClientPort.java
+📍 Location: src/main/java/com/example/
+
+package com.example;
+
+import java.io.*;
+import java.net.*;
+
+public class ClientPort {
+
+    public static void main(String[] args) {
+        try {
+            Socket socket = new Socket("localhost", 6000);
+
+            // Send to server
+            PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+
+            // Receive from server
+            BufferedReader in = new BufferedReader(
+                    new InputStreamReader(socket.getInputStream()));
+
+            out.println("Hello Server!");
+
+            String serverReply = in.readLine();
+            System.out.println("Server: " + serverReply);
+
+            socket.close();
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+}
+✅ 3. Folder Structure
+DemoApp/
+ ├── src/main/java/com/example/
+ │   ├── ServerPort.java
+ │   └── ClientPort.java
+✅ 4. How to Run (STEP-BY-STEP)
+🔹 Step 1: Compile
+mvn compile
+🔹 Step 2: Run Server FIRST
+java com.example.ServerPort
+
+✔ Output:
+
+Server started...
+🔹 Step 3: Run Client
+java com.example.ClientPort
+✅ 5. Output
+✔ Server Side:
+Server started...
+Client: Hello Server!
+✔ Client Side:
+Server: Hello Client, Message received!
+
+Save as: Arithmetic.java
+📍 Location: src/main/java/com/example/
+
+package com.example;
+
+public class Arithmetic {
+
+    public static int add(int a, int b) {
+        return a + b;
+    }
+
+    public static int sub(int a, int b) {
+        return a - b;
+    }
+
+    public static int mul(int a, int b) {
+        return a * b;
+    }
+
+    public static int div(int a, int b) {
+        return a / b;
+    }
+
+    public static int mod(int a, int b) {
+        return a % b;
+    }
+
+    public static void main(String[] args) {
+
+        int a = 10, b = 5;
+
+        System.out.println("Addition: " + add(a, b));
+        System.out.println("Subtraction: " + sub(a, b));
+        System.out.println("Multiplication: " + mul(a, b));
+        System.out.println("Division: " + div(a, b));
+        System.out.println("Modulus: " + mod(a, b));
+    }
+}
+✅ 2. JUnit Test Code
+
+📁 Save as: ArithmeticTest.java
+📍 Location: src/test/java/com/example/
+
+package com.example;
+
+import org.junit.Test;
+import static org.junit.Assert.*;
+
+public class ArithmeticTest {
+
+    @Test
+    public void testAdd() {
+        assertEquals(15, Arithmetic.add(10, 5));
+    }
+
+    @Test
+    public void testSub() {
+        assertEquals(5, Arithmetic.sub(10, 5));
+    }
+
+    @Test
+    public void testMul() {
+        assertEquals(50, Arithmetic.mul(10, 5));
+    }
+
+    @Test
+    public void testDiv() {
+        assertEquals(2, Arithmetic.div(10, 5));
+    }
+
+    @Test
+    public void testMod() {
+        assertEquals(0, Arithmetic.mod(10, 5));
+    }
+}
+✅ 3. Folder Structure
+DemoApp/
+ ├── src/
+ │   ├── main/java/com/example/Arithmetic.java
+ │   └── test/java/com/example/ArithmeticTest.java
+✅ 4. Run Commands
+mvn compile
+mvn test
+
+
+
+1: STEP-BY-STEP (CI + CD + Kubernetes)
+🔹 STEP 1: Create Project in Visual Studio Code
+Open VS Code
+Create folder → webapp
+Create file → index.html
+Paste the code (given below 👇)
+🔹 STEP 2: Push to GitHub
+git init
+git add .
+git commit -m "Initial commit - static web page"
+git remote add origin https://github.com/your-username/webapp.git
+git push -u origin main
+🔹 STEP 3: Modify Code & Commit Again
+git add .
+git commit -m "Updated webpage content"
+git push
+🔹 STEP 4: Configure Pipeline in Jenkins
+
+Create Jenkinsfile:
+
+pipeline {
+    agent any
+
+    stages {
+        stage('Clone') {
+            steps {
+                git 'https://github.com/your-username/webapp.git'
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                sh 'docker build -t webapp .'
+            }
+        }
+
+        stage('Deploy to Kubernetes') {
+            steps {
+                sh 'kubectl apply -f deployment.yaml'
+            }
+        }
+    }
+}
+🔹 STEP 5: Dockerfile (Containerization)
+FROM nginx:latest
+COPY . /usr/share/nginx/html
+🔹 STEP 6: Install & Use Docker
+docker build -t webapp .
+docker run -p 8080:80 webapp
+🔹 STEP 7: Kubernetes Setup
+
+Using Kubernetes
+
+✔ deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: webapp
+  template:
+    metadata:
+      labels:
+        app: webapp
+    spec:
+      containers:
+      - name: webapp
+        image: webapp
+        ports:
+        - containerPort: 80
+✔ service.yaml (NodePort)
+apiVersion: v1
+kind: Service
+metadata:
+  name: webapp-service
+spec:
+  type: NodePort
+  selector:
+    app: webapp
+  ports:
+    - port: 80
+      targetPort: 80
+      nodePort: 30007
+🔹 STEP 8: Deploy
+kubectl apply -f deployment.yaml
+kubectl apply -f service.yaml
+
+Access:
+
+http://<NodeIP>:30007
+✅ PART 2: HTML CODE (ALL QUESTIONS)
+
+👉 Save as: index.html
+
+🔹 (a) Student Results
+<h1>Student Results</h1>
+<table border="1">
+<tr><th>Subject</th><th>Marks</th></tr>
+<tr><td>Math</td><td>90</td></tr>
+<tr><td>Science</td><td>85</td></tr>
+<tr><td>English</td><td>88</td></tr>
+</table>
+🔹 (b) Five Events (Rivera)
+<h2>Rivera Events</h2>
+<ul>
+<li>Dance Competition</li>
+<li>Music Fest</li>
+<li>Coding Hackathon</li>
+<li>Drama Performance</li>
+<li>Sports Meet</li>
+</ul>
+🔹 (c) Conference Information
+<h2>Conference Details</h2>
+<p><b>Name:</b> AI Conference 2026</p>
+<p><b>Date:</b> March 10, 2026</p>
+<p><b>Venue:</b> VIT University</p>
+<p><b>Description:</b> A conference on Artificial Intelligence and Machine Learning.</p>
+🔹 (d) Price List
+<h2>Price List</h2>
+<table border="1">
+<tr><th>Item</th><th>Price</th></tr>
+<tr><td>Notebook</td><td>₹50</td></tr>
+<tr><td>Pen</td><td>₹20</td></tr>
+<tr><td>Bag</td><td>₹500</td></tr>
+</table>
+🔹 (e) Student Timetable
+<h2>Student Timetable</h2>
+<table border="1">
+<tr><th>Day</th><th>Subject</th></tr>
+<tr><td>Monday</td><td>Math</td></tr>
+<tr><td>Tuesday</td><td>Science</td></tr>
+<tr><td>Wednesday</td><td>English</td></tr>
+<tr><td>Thursday</td><td>Computer</td></tr>
+<tr><td>Friday</td><td>Physics</td></tr>
+</table>

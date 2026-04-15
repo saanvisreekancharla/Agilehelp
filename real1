@@ -1,0 +1,138 @@
+Case Study 1: New Project Version Control Setup
+Scenario: You are assigned to develop a Library Management System. Before coding, your team
+decides to enable version control.
+Tasks:
+- Create a project folder and open it in VS Code
+- Initialize a Git repository
+- Create a Python file and track it using Git
+- Commit the initial version
+
+Create a project folder and open it in VS Code
+Initialize Git repository
+🔹 Commands:
+git init
+🔹 Create file:
+print("Library System")
+git add .
+git commit -m "Initial commit"
+🔹 End:
+✔️ Project initialized and first version committed
+
+Case Study 2: Tracking Daily Code Changes
+Scenario: You are working on a Student Registration Module. You make small updates daily and
+need to record them.
+Tasks:
+- Modify an existing file
+- Check file differences
+- Stage and commit changes
+- View commit history
+
+git status
+git diff
+git add .
+git commit -m "Updated code"
+git log
+
+Case Study 3: Feature Development Using Branches
+Scenario: A new Login feature must be developed without disturbing main code.
+Tasks:
+- Create a new branch
+- Add login-related code
+- Commit changes
+- Switch between branches
+Start:
+Create new branch
+🔹 Commands:
+git branch login-feature
+git checkout login-feature
+
+(Add login code)
+
+git add .
+git commit -m "Added login feature"
+
+Case Study 4: Merging Feature into Main Code
+Scenario: The login feature is tested and approved.
+Tasks:
+- Switch to main branch
+- Merge feature branch
+- Verify merged content
+Switch to main branch
+🔹 Commands:
+git checkout main
+git merge login-feature
+
+Case Study 5: Working with Remote Repository
+Scenario: The project must be shared using GitHub.
+Tasks:
+- Create remote repository
+- Add remote origin
+- Push code to GitHub
+tart:
+Create repository in GitHub
+🔹 Commands:
+git remote add origin https://github.com/username/repo.git
+git branch -M main
+git push -u origin main
+🔹 End:
+
+✔️ Code pushed to GitHub
+
+Case Study 6: Undoing Mistakes
+Scenario: A file is modified incorrectly.
+Tasks:
+- View file changes
+- Discard uncommitted changes
+Start:
+File modified incorrectly
+🔹 Commands:
+git status
+git checkout -- filename
+
+
+Case Study 7: Handling Merge Conflicts
+Scenario: Two developers edited the same file.
+Tasks:
+- Merge branches
+- Resolve conflicts
+- Commit resolved changes
+Handling Merge Conflicts
+🔹 Start:
+Two branches edited same file
+🔹 Commands:
+git merge branch-name
+
+(Resolve manually)
+
+git add .
+git commit -m "Resolved conflict"
+🔹 End:
+
+✔️ Conflict resolved and committed
+
+
+Case Study 8: Ignoring Unwanted Files
+Scenario: Log and temporary files should not be tracked.
+Tasks:
+- Create .gitignore file
+- Add ignore patterns
+reate .gitignore
+🔹 Content:
+*.log
+*.tmp
+
+
+
+Case Study 9: Collaborating with Team
+Scenario: A teammate pushed new changes.
+Tasks:
+- Fetch latest changes
+- Pull updates
+- Resolve conflicts if any
+Case Study 10: Final Project Release
+Scenario:
+Project is ready for final submission.
+Tasks:
+- Review commit history
+- Push final code
+- Prepare release version

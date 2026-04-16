@@ -1,0 +1,126 @@
+1. JAVA CODE (Addition.java)
+package com.example;
+
+public class Addition {
+    public int add(int a, int b) {
+        return a + b;
+    }
+}
+✅ 2. JUNIT TEST CODE (AdditionTest.java)
+package com.example;
+
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+
+public class AdditionTest {
+
+    @Test
+    public void testAdd() {
+        Addition obj = new Addition();
+        assertEquals(5, obj.add(2, 3));
+    }
+
+    @Test
+    public void testAddNegative() {
+        Addition obj = new Addition();
+        assertEquals(-1, obj.add(2, -3));
+    }
+}
+✅ 3. pom.xml (COMPLETE – copy fully)
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.example</groupId>
+    <artifactId>AdditionProject</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.9.3</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0</version>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
+✅ 4. PROJECT STRUCTURE (VERY IMPORTANT)
+AdditionProject/
+ ├── pom.xml
+ └── src
+     ├── main
+     │   └── java
+     │       └── com/example/Addition.java
+     └── test
+         └── java
+             └── com/example/AdditionTest.java
+✅ 5. RUN USING MAVEN
+
+Open terminal inside project:
+
+mvn clean test
+
+✔ Output should show BUILD SUCCESS
+
+✅ 6. GIT COMMANDS (STEP-BY-STEP)
+git init
+git add .
+git commit -m "Initial commit - Addition project"
+git branch -M main
+git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO.git
+git push -u origin main
+✅ 7. JENKINS PIPELINE (Jenkinsfile)
+
+Create file Jenkinsfile:
+
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Clone Repo') {
+            steps {
+                git 'https://github.com/YOUR_USERNAME/YOUR_REPO.git'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh 'mvn clean compile'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                sh 'mvn test'
+            }
+        }
+    }
+}
+✅ 8. JENKINS STEPS
+Open Jenkins
+New Item → Pipeline
+Give name
+Scroll → Pipeline
+Select → "Pipeline script from SCM"
+Add Git repo link
+Save → Build Now
+
+✔ Take screenshot of:
+
+Stage view
+Console output
